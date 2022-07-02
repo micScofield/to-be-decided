@@ -1,7 +1,9 @@
+import Header from "./ui/Header";
+
 const App = () => {
   return (
     <div>
-      Kick Ass
+      <Header />
     </div>
   );
 }
