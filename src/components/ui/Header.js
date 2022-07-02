@@ -49,7 +49,10 @@ const useStyles = makeStyles((theme) => ({
     height: '45px',
   },
   logoContainer: {
-    padding: 0
+    padding: 0,
+    '&:hover': {
+      backgroundColor: 'transparent' // removes opacity on button hover
+    }
   }
 }));
 
@@ -81,7 +84,7 @@ const Header = () => {
       <ElevationScroll>
         <AppBar color='primary'>
           <Toolbar disableGutters>
-            <Button component={Link} to='/' className={classes.logoContainer} onClick={() => setValue(0)}>
+            <Button component={Link} to='/' className={classes.logoContainer} onClick={() => setValue(0)} disableRipple >
               <img src={logo} alt='company logo' className={classes.logo} />
             </Button>
             <Tabs
