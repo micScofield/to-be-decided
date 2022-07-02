@@ -1,15 +1,26 @@
 import { createTheme } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
+
+const arcBlue = '#0B72B9'
+const arcOrange = '#FFBA60'
 
 const theme = createTheme({
   palette: {
+    common: {
+        blue: `${arcBlue}`,
+        orange: `${arcOrange}`
+    },
     primary: {
-      main: purple[500],
+        main: `${arcBlue}`
     },
     secondary: {
-      main: '#11cb5f',
-    },
+        main: `${arcOrange}`
+    }
   },
+  typography: {
+    h3: {
+        fontWeight: 300
+    }
+  }
 });
 
 export default theme;
