@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function Test() {
   return (
-    <div>test</div>
+    <div>
+      <h1>Test</h1>
+    </div>
   )
 }

@@ -26,8 +26,18 @@ const theme = createTheme({
     estimate: {
       color: 'white',
       fontFamily: 'Pacifico',
+      fontWeight: 100,
       fontSize: '1rem',
       textTransform: 'none',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
 });
