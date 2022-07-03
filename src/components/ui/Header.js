@@ -7,6 +7,8 @@ import {
   Tabs,
   Tab,
   Button,
+  Menu,
+  MenuItem,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -51,18 +53,30 @@ const useStyles = makeStyles((theme) => ({
   logoContainer: {
     padding: 0,
     '&:hover': {
-      backgroundColor: 'transparent' // removes opacity on button hover
-    }
-  }
+      backgroundColor: 'transparent', // removes opacity on button hover
+    },
+  },
 }));
 
 const Header = () => {
   const classes = useStyles();
 
   const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const handleChange = (e, index) => {
     setValue(index);
+  };
+
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = (e) => {
+    setAnchorEl(null);
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -84,7 +98,13 @@ const Header = () => {
       <ElevationScroll>
         <AppBar color='primary'>
           <Toolbar disableGutters>
-            <Button component={Link} to='/' className={classes.logoContainer} onClick={() => setValue(0)} disableRipple >
+            <Button
+              component={Link}
+              to='/'
+              className={classes.logoContainer}
+              onClick={() => setValue(0)}
+              disableRipple
+            >
               <img src={logo} alt='company logo' className={classes.logo} />
             </Button>
             <Tabs
@@ -100,10 +120,13 @@ const Header = () => {
                 to='/'
               />
               <Tab
+                aria-owns={anchorEl ? 'services-menu' : undefined}
+                aria-haspopup={anchorEl ? 'true' : undefined}
                 className={classes.tab}
                 label='Services'
                 component={Link}
                 to='/services'
+                onMouseOver={(e) => handleClick(e)}
               />
               <Tab
                 className={classes.tab}
@@ -131,6 +154,21 @@ const Header = () => {
             >
               Free Estimate
             </Button>
+
+            {/* Services Menu */}
+            <Menu
+              id='services-menu'
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{ onMouseLeave: handleClose }}
+            >
+              <MenuItem onClick={handleClose}>
+                Custom Software Development
+              </MenuItem>
+              <MenuItem onClick={handleClose}>Mobile App Development</MenuItem>
+              <MenuItem onClick={handleClose}>Website Development</MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
